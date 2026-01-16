@@ -26,7 +26,7 @@ function App() {
         if (!isActive) {
             setTimeLeft(isFocusMode ? durations.focus : durations.shortBreak);
         }
-    }, [durations, isFocusMode, isActive]);
+    }, [durations, isFocusMode]);
 
     useEffect(() => {
         let interval = null;

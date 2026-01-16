@@ -1,6 +1,36 @@
 import React from 'react';
 
 const Settings = ({ durations, setDurations, soundEnabled, setSoundEnabled, onClose }) => {
+    // Local state for inputs to allow empty strings during typing
+    const [focusInput, setFocusInput] = React.useState(durations.focus / 60);
+    const [breakInput, setBreakInput] = React.useState(durations.shortBreak / 60);
+
+    // Sync local state if props change
+    React.useEffect(() => {
+        setFocusInput(durations.focus / 60);
+        setBreakInput(durations.shortBreak / 60);
+    }, [durations]);
+
+    const handleFocusChange = (e) => {
+        const val = e.target.value;
+        setFocusInput(val);
+        const num = parseFloat(val);
+        // Only update global state if valid number > 0
+        if (!isNaN(num) && num > 0) {
+            setDurations({ ...durations, focus: num * 60 });
+        }
+    };
+
+    const handleBreakChange = (e) => {
+        const val = e.target.value;
+        setBreakInput(val);
+        const num = parseFloat(val);
+        // Only update global state if valid number > 0
+        if (!isNaN(num) && num > 0) {
+            setDurations({ ...durations, shortBreak: num * 60 });
+        }
+    };
+
     return (
         <div className="settings-overlay">
             <div className="settings-modal">
@@ -10,8 +40,8 @@ const Settings = ({ durations, setDurations, soundEnabled, setSoundEnabled, onCl
                     <label>Focus (min)</label>
                     <input
                         type="number"
-                        value={durations.focus / 60}
-                        onChange={(e) => setDurations({ ...durations, focus: e.target.value * 60 })}
+                        value={focusInput}
+                        onChange={handleFocusChange}
                     />
                 </div>
 
@@ -19,8 +49,8 @@ const Settings = ({ durations, setDurations, soundEnabled, setSoundEnabled, onCl
                     <label>Break (min)</label>
                     <input
                         type="number"
-                        value={durations.shortBreak / 60}
-                        onChange={(e) => setDurations({ ...durations, shortBreak: e.target.value * 60 })}
+                        value={breakInput}
+                        onChange={handleBreakChange}
                     />
                 </div>
 
