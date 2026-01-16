@@ -1,0 +1,157 @@
+:root {
+  --bg-color: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --accent-color: #00bcd4;
+  /* Cyan/Teal from the mock */
+  --font-family: 'Inter', system-ui, sans-serif;
+  --drag-region-height: 32px;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  /* Make the whole window draggable, but interactive elements need -webkit-app-region: no-drag */
+  -webkit-app-region: drag;
+}
+
+button,
+input,
+.interactive {
+  -webkit-app-region: no-drag;
+}
+
+.main-content {
+  text-align: center;
+}
+
+h1 {
+  font-weight: 200;
+  font-size: 4rem;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+p {
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+button {
+  background: transparent;
+  border: 1px solid var(--text-secondary);
+  color: var(--text-primary);
+  padding: 10px 30px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-top: 2rem;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  background: rgba(0, 188, 212, 0.1);
+}
+
+/* Timer SVG */
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  /* Ensure timer is draggable or not? Usually center part might be non-drag if interactive */
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+  /* Make key interactive parts non-drag */
+  -webkit-app-region: no-drag;
+}
+
+.time-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Settings Overlay */
+.settings-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  -webkit-app-region: no-drag;
+}
+
+.settings-modal {
+  background: #222;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #333;
+  width: 80%;
+  max-width: 300px;
+}
+
+.setting-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+@keyframes breathe {
+  0% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+
+.mode-focus .progress-ring__circle {
+  stroke: var(--accent-color);
+  filter: drop-shadow(0 0 8px var(--accent-color));
+}
+
+.mode-break .progress-ring__circle {
+  stroke: #ff9800;
+  /* Orange for break */
+  filter: drop-shadow(0 0 8px #ff9800);
+}
