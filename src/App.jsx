@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Timer from './components/Timer';
 import Controls from './components/Controls';
 import Settings from './components/Settings';
+import WindowControls from './components/WindowControls';
 import { NoiseGenerator } from './utils/NoiseGenerator';
 
 function App() {
@@ -74,6 +75,8 @@ function App() {
 
     return (
         <div className={`app-container ${isFocusMode ? 'mode-focus' : 'mode-break'}`}>
+            <WindowControls />
+
             {/* Settings Gear */}
             <div
                 className="settings-icon"

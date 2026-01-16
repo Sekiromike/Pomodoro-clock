@@ -30,7 +30,9 @@ body {
 
 button,
 input,
-.interactive {
+.interactive,
+.settings-icon,
+.window-controls {
   -webkit-app-region: no-drag;
 }
 
@@ -69,6 +71,42 @@ button:hover {
   border-color: var(--accent-color);
   color: var(--accent-color);
   background: rgba(0, 188, 212, 0.1);
+}
+
+/* Window Controls */
+.window-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 8px;
+  z-index: 20;
+}
+
+.control-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.control-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+.control-btn.close:hover {
+  background: rgba(255, 82, 82, 0.2);
+  color: #ff5252;
 }
 
 /* Timer SVG */

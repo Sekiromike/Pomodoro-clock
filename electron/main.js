@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
 function createWindow() {
@@ -28,6 +28,19 @@ function createWindow() {
     } else {
         win.loadFile(path.join(__dirname, '../dist/index.html'));
     }
+
+    ipcMain.on('minimize-window', () => {
+        win.minimize()
+    })
+
+    ipcMain.on('close-window', () => {
+        win.close()
+    })
+
+    ipcMain.on('toggle-fullscreen', () => {
+        const isFullScreen = win.isFullScreen()
+        win.setFullScreen(!isFullScreen)
+    })
 }
 
 app.whenReady().then(() => {
