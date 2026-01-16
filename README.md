@@ -2,8 +2,8 @@
 
 A minimal, beautiful, and distraction-free study timer for Windows. Built with **Electron**, **React**, and **Vite**.
 
-![Zen Focus Timer UI](https://via.placeholder.com/800x450/1a1a1a/00bcd4?text=Zen+Focus+Timer+Preview) 
-*(Replace with actual screenshot)*
+![Pomodoro App](screenshots/app.png)
+
 
 ## ✨ Features
 
