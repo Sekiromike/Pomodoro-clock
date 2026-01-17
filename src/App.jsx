@@ -34,7 +34,7 @@ function App() {
             interval = setInterval(() => {
                 setTimeLeft(timeLeft => timeLeft - 1);
             }, 1000);
-        } else if (timeLeft === 0) {
+        } else if (isActive && timeLeft === 0) {
             // Timer finished
             setIsActive(false);
             // Play sound / notification here
